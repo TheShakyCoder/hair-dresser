@@ -20,7 +20,7 @@ const statusLabel = {
 </script>
 
 <template>
-    <Head title="Competitions — Acme Opticians" />
+    <Head title="Competitions — Acme Hairdressers" />
 
     <div class="font-sans antialiased text-warm-800 bg-white">
 

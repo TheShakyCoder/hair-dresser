@@ -1,73 +1,70 @@
 <script setup>
 const services = [
     {
-        icon: '&#128065;',
-        title: 'Comprehensive Eye Tests',
-        desc: 'A thorough 30-minute examination including OCT retinal scan, glaucoma check, and prescription update. NHS-funded tests available.',
-        color: 'bg-brand-50 border-brand-200',
-        iconBg: 'bg-brand-100',
+        no: '01',
+        title: 'Cut & Style',
+        desc: 'Consultation-led cuts, blow-dries and finishing — for hair you can re-create at home.',
+        photo: '/media/menu/cut-style.jpg',
     },
     {
-        icon: '&#128083;',
-        title: 'Designer Frames',
-        desc: 'Over 200 frames from Ray-Ban, Tom Ford, Persol, Lindberg and more — plus a curated own-label range with two-year warranties.',
-        color: 'bg-sky-50 border-sky-200',
-        iconBg: 'bg-sky-100',
+        no: '02',
+        title: 'Colour & Highlights',
+        desc: 'Balayage, foils, gloss and grey blending using vegan, ammonia-free formulas.',
+        photo: '/media/menu/colour-highlights.jpg',
     },
     {
-        icon: '&#129405;',
-        title: 'Contact Lenses',
-        desc: 'Free trial fittings for daily, monthly, and multifocal lenses. We also fit specialist toric and rigid gas-permeable lenses.',
-        color: 'bg-indigo-50 border-indigo-200',
-        iconBg: 'bg-indigo-100',
+        no: '03',
+        title: 'Treatments',
+        desc: 'Olaplex, K18 and bond-building masks to bring tired hair back to life.',
+        photo: '/media/menu/treatments.jpg',
     },
     {
-        icon: '&#9728;&#65039;',
-        title: 'Prescription Sunglasses',
-        desc: 'Polarised, photochromic and tinted lenses in a wide range of designer sunglass frames — perfect for driving and sport.',
-        color: 'bg-accent-50 border-accent-200',
-        iconBg: 'bg-accent-100',
-    },
-    {
-        icon: '&#127909;',
-        title: 'Children\'s Eye Care',
-        desc: 'Friendly, patient eye tests for children of all ages. Free NHS tests for under-16s, and a fun range of robust kids\' frames.',
-        color: 'bg-rose-50 border-rose-200',
-        iconBg: 'bg-rose-100',
-    },
-    {
-        icon: '&#128300;',
-        title: 'OCT & Dry Eye Clinic',
-        desc: 'In-depth OCT scans for macular and glaucoma monitoring, plus a dedicated dry eye clinic with IPL treatment.',
-        color: 'bg-emerald-50 border-emerald-200',
-        iconBg: 'bg-emerald-100',
+        no: '04',
+        title: 'Bridal & Events',
+        desc: 'Pre-wedding trials, on-the-day styling and group appointments at the salon or on location.',
+        photo: '/media/menu/bridal-events.jpg',
     },
 ];
 </script>
 
 <template>
-    <section id="services" class="py-20 bg-white">
+    <section id="services" class="py-24 lg:py-32 bg-cream-100">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-14">
-                <span class="text-xs font-bold uppercase tracking-widest text-brand-500 mb-3 block">Our Services</span>
-                <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-warm-900">
-                    Complete care for <span class="text-gradient-brand">every pair of eyes</span>
+
+            <div class="text-center mb-16 lg:mb-20 max-w-2xl mx-auto">
+                <p class="eyebrow text-brand-600 mb-5">The Menu</p>
+                <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl font-medium tracking-display leading-[1.05] text-warm-900 mb-6">
+                    Four ways into <span class="italic font-normal text-brand-700">the chair</span>
                 </h2>
-                <p class="text-warm-500 mt-4 max-w-xl mx-auto">
-                    From routine eye tests to specialist contact lens fittings — everything you need under one roof.
+                <p class="text-warm-600 text-[15px] leading-relaxed">
+                    Cuts, colour, restorative care and event styling — every appointment starts with a free consultation, so we agree on the plan before we begin.
                 </p>
             </div>
 
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div v-for="service in services" :key="service.title"
-                    class="group p-6 rounded-2xl border-2 transition-all hover:shadow-lg hover:-translate-y-1 cursor-default"
-                    :class="service.color">
-                    <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-4"
-                        :class="service.iconBg" v-html="service.icon">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-7">
+                <a v-for="service in services" :key="service.title"
+                    href="#book"
+                    class="group block">
+
+                    <!-- Image tile -->
+                    <div class="relative aspect-[4/5] overflow-hidden mb-5 bg-warm-800">
+                        <img :src="service.photo" :alt="service.title"
+                             class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                        <!-- Legibility gradient -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-warm-900/60 via-warm-900/0 to-warm-900/10"></div>
+                        <!-- Number -->
+                        <p class="absolute top-5 left-5 font-display text-3xl font-medium text-cream-50/95 tracking-display">No. {{ service.no }}</p>
                     </div>
-                    <h3 class="font-semibold text-warm-900 text-base mb-2">{{ service.title }}</h3>
-                    <p class="text-sm text-warm-600 leading-relaxed">{{ service.desc }}</p>
-                </div>
+
+                    <h3 class="font-display text-2xl font-medium text-warm-900 tracking-display mb-2 group-hover:text-brand-700 transition-colors">{{ service.title }}</h3>
+                    <p class="text-sm text-warm-600 leading-relaxed mb-4" v-html="service.desc"></p>
+                    <span class="inline-flex items-center gap-2 text-[11px] tracking-[0.25em] uppercase font-semibold text-brand-700">
+                        Book {{ service.title }}
+                        <svg class="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </span>
+                </a>
             </div>
         </div>
     </section>
