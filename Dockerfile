@@ -64,6 +64,13 @@ COPY . .
 COPY --from=build-assets /app/public/build /var/www/html/public/build
 COPY --from=build-assets /app/bootstrap/ssr /var/www/html/bootstrap/ssr
 
+# Force safe values for anything artisan touches while booting the console
+# kernel during `composer install`'s package:discover step (SetRequestForConsole
+# calls Request::create(config('app.url')), which throws "Invalid URI: Host is
+# malformed." if a build-time APP_URL is empty/unset/malformed).
+ENV APP_ENV=production
+ENV APP_URL=http://localhost
+
 # Install PHP production deps
 RUN composer install --prefer-dist --optimize-autoloader --no-dev --no-interaction
 
